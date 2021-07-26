@@ -203,6 +203,7 @@ static void CodingCopyingHashEqualExample() {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
     UILabel *label = [UILabel new];
     label.size = CGSizeMake(kScreenWidth, 30);
     label.centerY = self.view.height / 2 - (kiOS7Later ? 0 : 32);
