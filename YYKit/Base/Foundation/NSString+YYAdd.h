@@ -292,6 +292,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Trim blank characters (space and newline) in head and tail.
+ 修剪头部和尾部的空白字符（空格和换行）。
+ 
  @return the trimmed string.
  */
 - (NSString *)stringByTrim;
