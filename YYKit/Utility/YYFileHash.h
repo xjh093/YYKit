@@ -28,8 +28,8 @@ typedef NS_OPTIONS (NSUInteger, YYFileHashType) {
 };
 
 /**
- Utility for computing hashes of file with high performance and low memory usage.
- See `YYFileHashType` for all supported hash (checksum) type.
+ 计算文件哈希值的工具，高性能、低内存占用。
+ 查看 `YYFileHashType` 获得支持的哈希类型。
  
  Sample Code:
  

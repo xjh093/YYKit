@@ -13,6 +13,7 @@
 #import <objc/message.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 
+// 将 flag 转换成对应的网络状态
 static YYReachabilityStatus YYReachabilityStatusFromFlags(SCNetworkReachabilityFlags flags, BOOL allowWWAN) {
     if ((flags & kSCNetworkReachabilityFlagsReachable) == 0) {
         return YYReachabilityStatusNone;
@@ -40,10 +41,10 @@ static void YYReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
 }
 
 @interface YYReachability ()
-@property (nonatomic, assign) SCNetworkReachabilityRef ref;
+@property (nonatomic, assign) SCNetworkReachabilityRef ref; // 网络句柄指针
 @property (nonatomic, assign) BOOL scheduled;
-@property (nonatomic, assign) BOOL allowWWAN;
-@property (nonatomic, strong) CTTelephonyNetworkInfo *networkInfo;
+@property (nonatomic, assign) BOOL allowWWAN; // 该参数只对 Wi-Fi 网络有用
+@property (nonatomic, strong) CTTelephonyNetworkInfo *networkInfo; // 网络信息
 @end
 
 @implementation YYReachability
@@ -64,15 +65,18 @@ static void YYReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
      causes it to actually monitor the general routing status of the device, 
      both IPv4 and IPv6.
      https://developer.apple.com/library/ios/samplecode/Reachability/Listings/ReadMe_md.html#//apple_ref/doc/uid/DTS40007324-ReadMe_md-DontLinkElementID_11
+     
+     IP 地址 0.0.0.0 会被 reachability 视为一个特殊标记，使其能同时监控 IPv4 和 IPv6 的一般路由状态。
      */
     struct sockaddr_in zero_addr;
-    bzero(&zero_addr, sizeof(zero_addr));
+    bzero(&zero_addr, sizeof(zero_addr)); // bzero() 函数将 zero_addr 全部清 0
     zero_addr.sin_len = sizeof(zero_addr);
-    zero_addr.sin_family = AF_INET;
+    zero_addr.sin_family = AF_INET; // AF_INET 是 IPv4 协议族
     SCNetworkReachabilityRef ref = SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, (const struct sockaddr *)&zero_addr);
     return [self initWithRef:ref];
 }
 
+// 指定初始化方法
 - (instancetype)initWithRef:(SCNetworkReachabilityRef)ref {
     if (!ref) return nil;
     self = super.init;
@@ -103,6 +107,7 @@ static void YYReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
     }
 }
 
+// Lazy Loading ，通过 SCNetworkReachabilityGetFlags() 函数获取网络状态
 - (SCNetworkReachabilityFlags)flags {
     SCNetworkReachabilityFlags flags = 0;
     SCNetworkReachabilityGetFlags(self.ref, &flags);
@@ -120,17 +125,33 @@ static void YYReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
     static NSDictionary *dic;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        dic = @{CTRadioAccessTechnologyGPRS : @(YYReachabilityWWANStatus2G),  // 2.5G   171Kbps
-                CTRadioAccessTechnologyEdge : @(YYReachabilityWWANStatus2G),  // 2.75G  384Kbps
-                CTRadioAccessTechnologyWCDMA : @(YYReachabilityWWANStatus3G), // 3G     3.6Mbps/384Kbps
-                CTRadioAccessTechnologyHSDPA : @(YYReachabilityWWANStatus3G), // 3.5G   14.4Mbps/384Kbps
-                CTRadioAccessTechnologyHSUPA : @(YYReachabilityWWANStatus3G), // 3.75G  14.4Mbps/5.76Mbps
-                CTRadioAccessTechnologyCDMA1x : @(YYReachabilityWWANStatus3G), // 2.5G
-                CTRadioAccessTechnologyCDMAEVDORev0 : @(YYReachabilityWWANStatus3G),
-                CTRadioAccessTechnologyCDMAEVDORevA : @(YYReachabilityWWANStatus3G),
-                CTRadioAccessTechnologyCDMAEVDORevB : @(YYReachabilityWWANStatus3G),
-                CTRadioAccessTechnologyeHRPD : @(YYReachabilityWWANStatus3G),
-                CTRadioAccessTechnologyLTE : @(YYReachabilityWWANStatus4G)}; // LTE:3.9G 150M/75M  LTE-Advanced:4G 300M/150M
+        if (@available(iOS 14.1, *)) {
+            dic = @{CTRadioAccessTechnologyGPRS : @(YYReachabilityWWANStatus2G),  // 2.5G   171Kbps
+                    CTRadioAccessTechnologyEdge : @(YYReachabilityWWANStatus2G),  // 2.75G  384Kbps
+                    CTRadioAccessTechnologyWCDMA : @(YYReachabilityWWANStatus3G), // 3G     3.6Mbps/384Kbps
+                    CTRadioAccessTechnologyHSDPA : @(YYReachabilityWWANStatus3G), // 3.5G   14.4Mbps/384Kbps
+                    CTRadioAccessTechnologyHSUPA : @(YYReachabilityWWANStatus3G), // 3.75G  14.4Mbps/5.76Mbps
+                    CTRadioAccessTechnologyCDMA1x : @(YYReachabilityWWANStatus3G), // 2.5G
+                    CTRadioAccessTechnologyCDMAEVDORev0 : @(YYReachabilityWWANStatus3G),
+                    CTRadioAccessTechnologyCDMAEVDORevA : @(YYReachabilityWWANStatus3G),
+                    CTRadioAccessTechnologyCDMAEVDORevB : @(YYReachabilityWWANStatus3G),
+                    CTRadioAccessTechnologyeHRPD : @(YYReachabilityWWANStatus3G),
+                    CTRadioAccessTechnologyLTE : @(YYReachabilityWWANStatus4G),// LTE:3.9G 150M/75M  LTE-Advanced:4G 300M/150M
+                    CTRadioAccessTechnologyNRNSA: @(YYReachabilityWWANStatus5G),
+                    CTRadioAccessTechnologyNR: @(YYReachabilityWWANStatus5G)};
+        } else {
+            dic = @{CTRadioAccessTechnologyGPRS : @(YYReachabilityWWANStatus2G),  // 2.5G   171Kbps
+                    CTRadioAccessTechnologyEdge : @(YYReachabilityWWANStatus2G),  // 2.75G  384Kbps
+                    CTRadioAccessTechnologyWCDMA : @(YYReachabilityWWANStatus3G), // 3G     3.6Mbps/384Kbps
+                    CTRadioAccessTechnologyHSDPA : @(YYReachabilityWWANStatus3G), // 3.5G   14.4Mbps/384Kbps
+                    CTRadioAccessTechnologyHSUPA : @(YYReachabilityWWANStatus3G), // 3.75G  14.4Mbps/5.76Mbps
+                    CTRadioAccessTechnologyCDMA1x : @(YYReachabilityWWANStatus3G), // 2.5G
+                    CTRadioAccessTechnologyCDMAEVDORev0 : @(YYReachabilityWWANStatus3G),
+                    CTRadioAccessTechnologyCDMAEVDORevA : @(YYReachabilityWWANStatus3G),
+                    CTRadioAccessTechnologyCDMAEVDORevB : @(YYReachabilityWWANStatus3G),
+                    CTRadioAccessTechnologyeHRPD : @(YYReachabilityWWANStatus3G),
+                    CTRadioAccessTechnologyLTE : @(YYReachabilityWWANStatus4G)}; // LTE:3.9G 150M/75M  LTE-Advanced:4G 300M/150M
+        }
     });
     NSNumber *num = dic[status];
     if (num != nil) return num.unsignedIntegerValue;

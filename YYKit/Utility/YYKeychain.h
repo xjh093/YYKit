@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  A wrapper for system keychain API.
  
- Inspired by [SSKeychain](https://github.com/soffes/sskeychain) 😜
+ Inspired by [SSKeychain](https://github.com/soffes/SAMKeychain) 😜
  */
 @interface YYKeychain : NSObject
 
