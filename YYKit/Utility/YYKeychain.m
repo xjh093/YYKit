@@ -445,6 +445,11 @@ static YYKeychainQuerySynchronizationMode YYKeychainQuerySynchonizationEnum(NSNu
         dic = [(__bridge NSArray *)(result) firstObject];
         if (![dic isKindOfClass:[NSDictionary class]]) dic = nil;
     }
+    
+    if (result) {
+        CFRelease(result);
+    }
+    
     if (!dic.count) return nil;
     return [[YYKeychainItem alloc] initWithDic:dic];
 }
