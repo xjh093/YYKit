@@ -13,25 +13,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- Provides extensions for `NSBundle` to get resource by @2x or @3x...
- 
- Example: ico.png, ico@2x.png, ico@3x.png. Call scaledResource:@"ico" ofType:@"png"
- on iPhone6 will return "ico@2x.png"'s path.
- */
+/// 为 NSBundle 提供扩展方法，以 @2x 或 @3x 的方式获取资源。
+/// 例如：ico.png, ico@2x.png, ico@3x.png。
+/// 在 iPhone6 上调用 scaledResource:@"ico" ofType:@"png" 方法将返回 "ico@2x.png" 的路径。
 @interface NSBundle (YYAdd)
 
-/**
- An array of NSNumber objects, shows the best order for path scale search.
- e.g. iPhone3GS:@[@1,@2,@3] iPhone5:@[@2,@3,@1]  iPhone6 Plus:@[@3,@2,@1]
- */
+/// 返回一个包含 NSNumber 类型的数组，显示图片资源 scale 倍率搜索的最佳顺序。
+/// 例如：iPhone3GS:@[@1,@2,@3] iPhone5:@[@2,@3,@1] iPhone6 Plus:@[@3,@2,@1]
 + (NSArray<NSNumber *> *)preferredScales;
 
 /**
- Returns the full pathname for the resource file identified by the specified 
- name and extension and residing in a given bundle directory. It first search
- the file with current screen's scale (such as @2x), then search from higher
- scale to lower scale.
+ 指定文件名、文件扩展名和 bundle 资源包目录，返回该资源文件的全路径。
+ 它首先会搜索当前屏幕分辨率下所属的资源文件（如@2x），其次会从高分辨率向低分辨率搜索。
  
  @param name       The name of a resource file contained in the directory 
  specified by bundlePath.

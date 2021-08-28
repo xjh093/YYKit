@@ -290,17 +290,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)enumerateUTF32CharInRange:(NSRange)range usingBlock:(void (^)(UTF32Char char32, NSRange range, BOOL *stop))block;
 
-/**
- Trim blank characters (space and newline) in head and tail.
- 修剪头部和尾部的空白字符（空格和换行）。
- 
- @return the trimmed string.
- */
+/// 修剪头部和尾部的空白字符（空格和换行）
 - (NSString *)stringByTrim;
 
 /**
- Add scale modifier to the file name (without path extension),
- From @"name" to @"name@2x".
+ 在文件名（没有文件名扩展）后面添加屏幕分辨率倍率后缀 @2x、@3x
+ @"name" => @"name@2x"
  
  e.g.
  <table>
@@ -312,14 +307,14 @@ NS_ASSUME_NONNULL_BEGIN
  <tr><td>"/path/"   </td><td>"/path/"      </td></tr>
  </table>
  
- @param scale Resource scale.
+ @param scale 屏幕分辨率倍数，2或者3
  @return String by add scale modifier, or just return if it's not end with file name.
  */
 - (NSString *)stringByAppendingNameScale:(CGFloat)scale;
 
 /**
- Add scale modifier to the file path (with path extension),
- From @"name.png" to @"name@2x.png".
+ 在文件名（有文件名扩展）后面添加屏幕分辨率倍率后缀 @2x、@3x
+ @"name.png" => @"name@2x.png".
  
  e.g.
  <table>
@@ -333,7 +328,7 @@ NS_ASSUME_NONNULL_BEGIN
  <tr><td>"/path/"   </td><td>"/path/"      </td></tr>
  </table>
  
- @param scale Resource scale.
+ @param scale 屏幕分辨率倍数，2或者3
  @return String by add scale modifier, or just return if it's not end with file name.
  */
 - (NSString *)stringByAppendingPathScale:(CGFloat)scale;
