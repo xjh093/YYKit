@@ -1,5 +1,4 @@
 Pod::Spec.new do |s|
-
   s.name         = 'YYKit-andy0570'
   s.summary      = 'A collection of iOS components.'
   s.version      = '1.0.10'
