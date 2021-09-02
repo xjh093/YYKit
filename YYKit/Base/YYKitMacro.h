@@ -27,11 +27,11 @@
 
 YY_EXTERN_C_BEGIN
 
-#ifndef YY_CLAMP // return the clamped value
+#ifndef YY_CLAMP // 返回中间值
 #define YY_CLAMP(_x_, _low_, _high_)  (((_x_) > (_high_)) ? (_high_) : (((_x_) < (_low_)) ? (_low_) : (_x_)))
 #endif
 
-#ifndef YY_SWAP // swap two value
+#ifndef YY_SWAP // 交换两个值
 #define YY_SWAP(_a_, _b_)  do { __typeof__(_a_) _tmp_ = (_a_); (_a_) = (_b_); (_b_) = _tmp_; } while (0)
 #endif
 
@@ -65,6 +65,7 @@ YY_EXTERN_C_BEGIN
 /**
  Synthsize a dynamic object property in @implementation scope.
  It allows us to add custom properties to existing classes in categories.
+ 在 category 扩展中为现有类添加自定义属性
  
  @param association  ASSIGN / RETAIN / COPY / RETAIN_NONATOMIC / COPY_NONATOMIC
  @warning #import <objc/runtime.h>

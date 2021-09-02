@@ -3,9 +3,9 @@ YYKit
 
 [![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/ibireme/YYKit/master/LICENSE)&nbsp;
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)&nbsp;
-[![CocoaPods](http://img.shields.io/cocoapods/v/YYKit.svg?style=flat)](http://cocoapods.org/pods/YYKit)&nbsp;
+[![CocoaPods](https://img.shields.io/cocoapods/v/YYKit-andy0570.svg?style=flat)](http://cocoapods.org/pods/YYKit-andy0570)&nbsp;
 [![CocoaPods](http://img.shields.io/cocoapods/p/YYKit.svg?style=flat)](http://cocoadocs.org/docsets/YYKit)&nbsp;
-[![Support](https://img.shields.io/badge/support-iOS%206%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
+[![Support](https://img.shields.io/badge/support-iOS%209%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
 [![Build Status](https://travis-ci.org/ibireme/YYKit.svg?branch=master)](https://travis-ci.org/ibireme/YYKit)
 
 
@@ -165,7 +165,7 @@ YYKit 是一组功能丰富的 iOS 组件。
 
 系统要求
 ==============
-该项目最低支持 `iOS 6.0` 和 `Xcode 8.0`。
+该项目最低支持 `iOS 9.0` 和 `Xcode 10.0`。
 
 
 注意
@@ -182,5 +182,4 @@ YYKit 使用 MIT 许可证，详情见 LICENSE 文件。
 ==============
 [iOS 保持界面流畅的技巧
 ](https://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/) 
-
 

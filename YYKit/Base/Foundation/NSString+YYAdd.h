@@ -13,9 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- Provide hash, encrypt, encode and some common method for 'NSString'.
- */
+/// 为 NSString 添加哈希、加密、编码和其他常用方法。
 @interface NSString (YYAdd)
 
 #pragma mark - Hash

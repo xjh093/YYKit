@@ -1154,6 +1154,7 @@
 				TargetAttributes = {
 					D97484CF19CAAD2900F46DE1 = {
 						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -1492,6 +1493,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
 				DEVELOPMENT_TEAM = A8F7U6DN75;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1515,6 +1518,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibireme.YYKitDemo;
 				PRODUCT_NAME = YYKitDemo;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1524,6 +1528,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
 				DEVELOPMENT_TEAM = A8F7U6DN75;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1546,6 +1552,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibireme.YYKitDemo;
 				PRODUCT_NAME = YYKitDemo;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

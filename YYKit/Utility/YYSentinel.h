@@ -13,13 +13,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- YYSentinel is a thread safe incrementing counter. 
- It may be used in some multi-threaded situation.
- */
+/// YYSentinel 是一个线程安全的递增计数器。
+/// 它可以在一些多线程的情况下使用。
 @interface YYSentinel : NSObject
 
-/// Returns the current value of the counter.
+/// 返回计数器的当前值
 @property (readonly) int32_t value;
 
 /// Increase the value atomically.
