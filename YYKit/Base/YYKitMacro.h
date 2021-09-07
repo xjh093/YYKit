@@ -334,4 +334,33 @@ assert(res == 0); \
 
 
 YY_EXTERN_C_END
+
+// 通过屏幕分辨率高度判断是否为刘海屏
+#ifndef IS_NOTCH_SCREEN
+#define IS_NOTCH_SCREEN \
+([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) \
+&& (([[UIScreen mainScreen] bounds].size.height == 812.0f) \
+|| ([[UIScreen mainScreen] bounds].size.height == 896.0f))
+#endif
+
+// 状态栏高度
+#ifndef STATUS_BAR_HEIGHT
+#define STATUS_BAR_HEIGHT (IS_NOTCH_SCREEN ? (44.0):(20.0))
+#endif
+
+// 导航栏高度
+#ifndef NAVIGATION_BAR_HEIGHT
+#define NAVIGATION_BAR_HEIGHT 44.0
+#endif
+
+// tabBar 高度，49+34 = 83
+#ifndef TAB_BAR_HEIGHT
+#define TAB_BAR_HEIGHT (IS_NOTCH_SCREEN ? (49.0 + 34.0):(49.0))
+#endif
+
+// bottom.safeAreaInsets = 34
+#ifndef BOTTOM_SAFEAREA_HEIGHT
+#define BOTTOM_SAFEAREA_HEIGHT (IS_NOTCH_SCREEN ? (34.0):(0))
+#endif
+
 #endif

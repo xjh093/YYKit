@@ -49,6 +49,14 @@ extern void YY_HSL2HSB(CGFloat h, CGFloat s, CGFloat l,
 #define UIColorHex(_hex_)   [UIColor colorWithHexString:((__bridge NSString *)CFSTR(#_hex_))]
 #endif
 
+#ifndef RGBA
+#define RGBA(r, g, b, a)    [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:a]
+#endif
+
+#ifndef RGB
+#define RGB(r, g, b)    [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1.f]
+#endif
+
 /**
  Provide some method for `UIColor` to convert color between
  RGB,HSB,HSL,CMYK and Hex.

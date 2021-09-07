@@ -298,46 +298,28 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Image Effect
 ///=============================================================================
 
-/**
- Tint the image in alpha channel with the given color.
- 
- @param color  The color.
- */
+/// 用给定的颜色对图像的 alpha 通道进行着色
 - (nullable UIImage *)imageByTintColor:(UIColor *)color;
 
-/**
- Returns a grayscaled image.
- */
+/// 返回灰度图像
 - (nullable UIImage *)imageByGrayscale;
 
-/**
- Applies a blur effect to this image. Suitable for blur any content.
- */
+/// 对该图像应用模糊效果。适用于模糊任何内容。
 - (nullable UIImage *)imageByBlurSoft;
 
-/**
- Applies a blur effect to this image. Suitable for blur any content except pure white.
- (same as iOS Control Panel)
- */
+/// 对该图像应用模糊效果。适用于除纯白色以外的任何内容的模糊。
+/// (与iOS控制面板相同)
 - (nullable UIImage *)imageByBlurLight;
 
-/**
- Applies a blur effect to this image. Suitable for displaying black text.
- (same as iOS Navigation Bar White)
- */
+/// 对该图像应用模糊的效果。适用于显示黑色文本。
+/// (与iOS导航栏白色相同)
 - (nullable UIImage *)imageByBlurExtraLight;
 
-/**
- Applies a blur effect to this image. Suitable for displaying white text.
- (same as iOS Notification Center)
- */
+/// 对该图像应用模糊的效果。适用于显示白色文本。
+/// (与iOS通知中心相同)
 - (nullable UIImage *)imageByBlurDark;
 
-/**
- Applies a blur and tint color to this image.
- 
- @param tintColor  The tint color.
- */
+/// 对该图像应用模糊效果和 tint 颜色
 - (nullable UIImage *)imageByBlurWithTint:(UIColor *)tintColor;
 
 /**
