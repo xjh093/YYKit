@@ -54,7 +54,15 @@ extern void YY_HSL2HSB(CGFloat h, CGFloat s, CGFloat l,
 #endif
 
 #ifndef RGB
-#define RGB(r, g, b)    [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1.f]
+#define RGB(r, g, b)        [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1.0]
+#endif
+
+#ifndef HSLA
+#define HSLA(h, s, l, a)    [UIColor colorWithHue:(h)/360.0f saturation:(s)/360.0f lightness:(l)/360.0f alpha:a]
+#endif
+
+#ifndef HSL
+#define HSBL(h, s, l)       [UIColor colorWithHue:(h)/360.0f saturation:(s)/360.0f lightness:(l)/360.0f alpha:1.0]
 #endif
 
 /**
