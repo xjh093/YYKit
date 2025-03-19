@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name         = 'YYKit-andy0570'
+  s.name         = 'YYKit-xjh093'
   s.summary      = 'A collection of iOS components.'
   s.version      = '1.1.1'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.homepage     = 'https://github.com/ibireme/YYKit'
   s.platform     = :ios, '9.0'
   s.ios.deployment_target = '9.0'
-  s.source       = { :git => 'https://github.com/Andy0570/YYKit.git', :tag => s.version.to_s }
+  s.source       = { :git => 'https://github.com/xjh093/YYKit.git', :tag => s.version.to_s }
   
   s.requires_arc = true
   s.source_files = 'YYKit/**/*.{h,m}'
